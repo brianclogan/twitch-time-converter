@@ -13,7 +13,7 @@
 
 $router->get('/{streamer}/{follower}[/{timezone}]', function ($streamer, $follower, $timezone = 'America/Phoenix') use ($router) {
     if($streamer == $follower) {
-      return 'they created the channel... duh...';
+      return 'as long as the channel has been made... they created it... duh...';
     }
     $url = file_get_contents('http://api.newtimenow.com/follow-length/?channel=' . $streamer . '&user=' . $follower);
     $time_started = \Carbon\Carbon::parse($url);
