@@ -15,5 +15,5 @@ $router->get('/{streamer}/{follower}[/{timezone}]', function ($streamer, $follow
     $url = file_get_contents('http://api.newtimenow.com/follow-length/?channel=' . $streamer . '&user=' . $follower);
     $time_started = \Carbon\Carbon::parse($url);
     $time_started->tz($timezone);
-    return $time_started->diffForHumans();
+    return $time_started->diffForHumans(null, true);
 });
