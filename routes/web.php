@@ -11,7 +11,10 @@
 |
 */
 
-$router->get('/{streamer}/{follower}[/{timezone}]', function ($streamer, $follower, $timezone = 'America/Phoenix') use ($router) {
+$router->get('/{streamer}[/{follower}][/{timezone}]', function ($streamer, $follower = null, $timezone = 'America/Phoenix') use ($router) {
+    if(!$follower) {
+      $follower = $streamer;
+    }
     $url = file_get_contents('http://api.newtimenow.com/follow-length/?channel=' . $streamer . '&user=' . $follower);
     $time_started = \Carbon\Carbon::parse($url);
     $time_started->tz($timezone);
